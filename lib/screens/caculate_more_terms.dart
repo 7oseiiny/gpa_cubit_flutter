@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gpa/widget/button.dart';
-import 'package:gpa/widget/text.dart';
-import 'package:gpa/widget/textfield.dart';
 
 import '../cubit/gpa_cubit.dart';
+import '../widget/button.dart';
+import '../widget/text.dart';
+import '../widget/textfield.dart';
 
-class CalculateOneTerm extends StatelessWidget {
-
-   CalculateOneTerm({Key? key}) : super(key: key);
+class Caculate_more_terms extends StatelessWidget {
+  const Caculate_more_terms({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculate for one term"),
+        title: Text("Calculate for more "),
       ),
       body: Container(
         height: 350,
         child: Form(
-          key: BlocProvider.of<GpaCubit>(context).formKey,
+          key: BlocProvider.of<GpaCubit>(context).formKeyMore,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -33,7 +32,7 @@ class CalculateOneTerm extends StatelessWidget {
                     builder: (context, state) {
                       return Text_(
                           data:
-                              '   enter your mark of subject  ${BlocProvider.of<GpaCubit>(context).points.length + 1}  ');
+                          '   enter gpa of term  ${BlocProvider.of<GpaCubit>(context).point_of_term_list.length + 1}  ');
                     },
                   ),
                   BlocConsumer<GpaCubit, GpaState>(
@@ -52,14 +51,14 @@ class CalculateOneTerm extends StatelessWidget {
                           }
                           // }
                           return null;},
-                        focusnode: BlocProvider.of<GpaCubit>(context).focusnode,
-                        enabled: BlocProvider.of<GpaCubit>(context).hours.length <
-                                int.parse(BlocProvider.of<GpaCubit>(context)
-                                    .number_of_subject
-                                    .text)
+                        focusnode: BlocProvider.of<GpaCubit>(context).focusnodeMore,
+                        enabled: BlocProvider.of<GpaCubit>(context).hours_of_term_list.length <
+                            int.parse(BlocProvider.of<GpaCubit>(context)
+                                .number_of_terms
+                                .text)
                             ? true
                             : false,
-                        controller: BlocProvider.of<GpaCubit>(context).mm,
+                        controller: BlocProvider.of<GpaCubit>(context).gpa_of_term,
                       );
                     },
                   ),
@@ -75,7 +74,7 @@ class CalculateOneTerm extends StatelessWidget {
                     builder: (context, state) {
                       return Text_(
                           data:
-                              '   enter hours of subject  ${BlocProvider.of<GpaCubit>(context).hours.length + 1}  ');
+                          '   enter hours of term  ${BlocProvider.of<GpaCubit>(context).hours_of_term_list.length + 1}  ');
                     },
                   ),
                   BlocConsumer<GpaCubit, GpaState>(
@@ -84,24 +83,24 @@ class CalculateOneTerm extends StatelessWidget {
                     },
                     builder: (context, state) {
                       return TextFormField_(
-                        validator: (value){
-                          try {
-                            double.parse(value);
+                          validator: (value){
+                            try {
+                              double.parse(value);
 
-                          }
-                          catch(e){
-                            return 'Please enter number only';
-                          }
-                          // }
-                          return null;},
+                            }
+                            catch(e){
+                              return 'Please enter number only';
+                            }
+                            // }
+                            return null;},
                           enabled:
-                              BlocProvider.of<GpaCubit>(context).hours.length <
-                                      int.parse(BlocProvider.of<GpaCubit>(context)
-                                          .number_of_subject
-                                          .text)
-                                  ? true
-                                  : false,
-                          controller: BlocProvider.of<GpaCubit>(context).hh);
+                          BlocProvider.of<GpaCubit>(context).hours_of_term_list.length <
+                              int.parse(BlocProvider.of<GpaCubit>(context)
+                                  .number_of_terms
+                                  .text)
+                              ? true
+                              : false,
+                          controller: BlocProvider.of<GpaCubit>(context).hours_of_term);
                     },
                   ),
                 ],
@@ -113,7 +112,7 @@ class CalculateOneTerm extends StatelessWidget {
                 builder: (context, state) {
                   return Text_(
                       data:
-                          "your gpa is ${BlocProvider.of<GpaCubit>(context).gpa}");
+                      "your gpa is ${BlocProvider.of<GpaCubit>(context).gpaMore}");
                 },
               ),
               Row(
@@ -135,23 +134,23 @@ class CalculateOneTerm extends StatelessWidget {
                     },
                     builder: (context, state) {
                       return Button_(
-                        data: BlocProvider.of<GpaCubit>(context).hours.length <
-                                int.parse(BlocProvider.of<GpaCubit>(context)
-                                        .number_of_subject
-                                        .text) -
-                                    1
+                        data: BlocProvider.of<GpaCubit>(context).hours_of_term_list.length <
+                            int.parse(BlocProvider.of<GpaCubit>(context)
+                                .number_of_terms
+                                .text) -
+                                1
                             ? "next"
                             : "caculate",
-                        onPressed: BlocProvider.of<GpaCubit>(context).hours.length <
+                        onPressed: BlocProvider.of<GpaCubit>(context).hours_of_term_list.length <
                             int.parse(BlocProvider.of<GpaCubit>(context)
-                                .number_of_subject
-                                .text)?() {BlocProvider.of<GpaCubit>(context).calculate();} :null,
+                                .number_of_terms
+                                .text)?() {BlocProvider.of<GpaCubit>(context).calculate_more();} :null,
                       );
                     },
                   ),
                   Button_(data: "reset",
                     onPressed: () {
-                      BlocProvider.of<GpaCubit>(context).rest();
+                      BlocProvider.of<GpaCubit>(context).restMore();
                     },
                   )
                 ],

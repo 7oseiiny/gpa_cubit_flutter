@@ -6,6 +6,6 @@ class Text_ extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(data,style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold));
+    return Text(data,style: TextStyle(fontSize: MediaQuery.of(context).size.width*.04,fontWeight: FontWeight.bold));
   }
 }
