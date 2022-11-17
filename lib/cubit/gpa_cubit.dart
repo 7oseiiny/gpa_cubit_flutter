@@ -108,5 +108,18 @@ class GpaCubit extends Cubit<GpaState> {
     gpaMore=0;
     emit(GpaInitial());
   }
+  dynamic backMore(){
+    if (hours.length==0){
+      emit(GpaInitial());
+      return null;
+    }
+    else{
 
+      return (){point_of_term_list.removeLast();
+      hours_of_term_list.removeLast();
+      focusnodeMore.requestFocus();
+      emit(GpaInitial());};
+    };
+
+  }
 }

@@ -13,7 +13,7 @@ class TextFormField_ extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(            width:  MediaQuery.of(context).size.width*.40,
-      height: MediaQuery.of(context).size.height*.05,
+      height: MediaQuery.of(context).size.height*.06,
 
       child: Padding(
         padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*.06),
@@ -35,7 +35,7 @@ class TextFormField_ extends StatelessWidget {
                 validator:validator ,
                 focusNode: focusnode,
                 keyboardType: TextInputType.number,
-                style: TextStyle(fontSize: MediaQuery.of(context).size.width*.06,color: Colors.blue),
+                style: TextStyle(fontSize: MediaQuery.of(context).size.height*.03,color: Colors.blue),
                 controller: controller,
                 enabled:enabled ,
               ),
